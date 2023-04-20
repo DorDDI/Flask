@@ -34,13 +34,13 @@
                <!-- where to go-->
             <div class="navbar-nav mr-auto col-md-10">
                  <!-- name of the class-->
-              <a class="nav-item nav-link" href="/home">Home</a>
-              <a class="nav-item nav-link" href="/about">About</a>
+              <a class="nav-item nav-link" href="{{url_for('home')}}">Home</a>
+              <a class="nav-item nav-link" href="{{url_for('about')}}">About</a>
                 <!-- nav-item - its nevigate item, nav-link - color, href - to what path and the name of th button -->
             </div>
             <div class="navbar-nav" >
-              <a class="nav-item nav-link" href="/login">Login</a>
-              <a class="nav-item nav-link" href="/register">Register</a>
+              <a class="nav-item nav-link" href="{{url_for('login')}}">Login</a>
+              <a class="nav-item nav-link" href="{{url_for('register')}}">Register</a>
             </div>
           </div>
         </div>
@@ -53,7 +53,16 @@
           <!-- wrap the next tin rows-->
         <div class="col-md-8">
             <!--size of col - medium with size 8-->
-          {% block content1 %}{% endblock %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {%endfor%}
+                {%endif%}
+            {%endwith%}
+            {% block content1 %}{% endblock %}
             <!-- block data (name - content1)-->
         </div>
         <div class="col-md-4">
