@@ -39,8 +39,14 @@
                 <!-- nav-item - its nevigate item, nav-link - color, href - to what path and the name of th button -->
             </div>
             <div class="navbar-nav" >
-              <a class="nav-item nav-link" href="{{url_for('login')}}">Login</a>
-              <a class="nav-item nav-link" href="{{url_for('register')}}">Register</a>
+                {% if current_user.is_authenticated %}
+                    <a class="nav-item nav-link" href="{{url_for('account')}}">Account</a>
+                    <a class="nav-item nav-link" href="{{url_for('logout')}}">Logout</a>
+                {% else %}
+                    <a class="nav-item nav-link" href="{{url_for('login')}}">Login</a>
+                    <a class="nav-item nav-link" href="{{url_for('register')}}">Register</a>
+                {% endif %}
+
             </div>
           </div>
         </div>
