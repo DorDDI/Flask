@@ -12,6 +12,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #6495ED;
 }
 
+
 .site-header .navbar-nav .nav-link {
   color: #cbd5db;
 }
@@ -20,7 +21,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffffff;
 }
 
-.site-header .navbar-nav .nav-link.active {
+.site-header .navbar-nav  .nav-link.active {
   font-weight: 500;
 }
 
@@ -34,11 +35,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .article-title {
   color: #444444;
+  text-decoration:none;
 }
 
 a.article-title:hover {
   color: #428bca;
-  text-decoration: none;
+  text-decoration:none;
 }
 
 .article-content {
@@ -49,17 +51,20 @@ a.article-title:hover {
   height: 65px;
   width: 65px;
   margin-right: 16px;
+  float: left;
 }
 
 .article-metadata {
+  text-decoration:none;
   padding-bottom: 1px;
   margin-bottom: 4px;
   border-bottom: 1px solid #e3e3e3
+
 }
 
 .article-metadata a:hover {
   color: #333;
-  text-decoration: none;
+  text-decoration:none;
 }
 
 .article-svg {
