@@ -1,6 +1,6 @@
 import datetime
-
-from app import db, login_manager, app
+from flask import current_app
+from app import db, login_manager
 from flask_login import UserMixin
 import jwt
 # pip install pyjwt
@@ -25,7 +25,7 @@ class User(db.Model, UserMixin):
                 "exp": datetime.datetime.now(tz=datetime.timezone.utc)
                        + datetime.timedelta(seconds=expires_sec)
             },
-            app.config['SECRET_KEY'],
+            current_app.config['SECRET_KEY'],
             algorithm="HS256"
         )
         return reset_token
@@ -35,13 +35,13 @@ class User(db.Model, UserMixin):
         try:
             user_id = jwt.decode(
                 token,
-                app.config['SECRET_KEY'],
+                current_app.config['SECRET_KEY'],
                 leeway=datetime.timedelta(seconds=10),
                 algorithms=["HS256"]
             )
         except:
             return None
-        return User.query.get(user_id)
+        return User.query.get(user_id['user_id'])
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
