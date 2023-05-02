@@ -8,18 +8,21 @@
 
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename = 'main.css')}}"<link>
 
-
-    {% if title %}
-            <title>Flast Blog - {{title}} </title>
-    {% else  %}
-            <title>Flast Blog</title>
-    {% endif %}
+    <title>Movie - {{title}} </title>
 </head>
 <body>
 
     <header class="site-header">
         <!-- just name of the site -->
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        {% if section == 0%}
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel-main fixed-top">
+        {% else %}
+        {% if section == 1%}
+            <nav class="navbar navbar-expand-md navbar-dark bg-steel-movie fixed-top">
+        {% else%}
+            <nav class="navbar navbar-expand-md navbar-dark bg-steel-music fixed-top">
+        {% endif %}
+          {% endif %}
           <!-- navbar - class, navbar-expand-md - size, navbar-dark,bg-steel - colors,  fixed-top - place -->
         <div class="container">
             <!-- just to center it -->
@@ -34,8 +37,15 @@
                <!-- where to go-->
             <ul class="navbar-nav me-auto">
                  <!-- name of the class-->
-              <a class="nav-item nav-link" href="{{url_for('main.home')}}">Home</a>
-              <a class="nav-item nav-link" href="{{url_for('main.about')}}">About</a>
+                {% if section == 0%}
+                    <a class="nav-item nav-link" href="{{url_for('menu.main_about')}}">About</a>
+                {% else %}
+                {% if section == 1%}
+                    <a class="nav-item nav-link" href="{{url_for('movie_main.about')}}">About</a>
+                {% else %}
+                    <a class="nav-item nav-link" href="{{url_for('music_main.about')}}">About</a>
+                {% endif %}
+                {% endif %}
                 <!-- nav-item - its nevigate item, nav-link - color, href - to what path and the name of th button -->
             </ul>
             <ul class="navbar-nav" >
@@ -71,26 +81,29 @@
             {%endwith%}
             {% block content1 %}{% endblock %}
             <!-- block data (name - content1)-->
+        {% if section!=0 %}
+            </div>
+            <div class="col-md-4">
+                <!-- the rigth section (becouse we did it in rows, medium size 4)-->
+              <div class="content-section">
+                  <!-- name of the class - edit in css -->
+                <h3>Our Sidebar</h3>
+                  <!-- name of the side -->
+                <p class='text-muted'>You can put any information here you'd like.
+                  <!-- text-muted - gray style, after it out own text-->
+                  <ul class="list-group">
+                  <!-- list-group - will be a list group -->
+                    <li class="list-group-item list-group-item-light">Latest Posts</li>
+                    <li class="list-group-item list-group-item-light">Announcements</li>
+                    <li class="list-group-item list-group-item-light">Calendars</li>
+                    <li class="list-group-item list-group-item-light">etc</li>
+                  <!-- li - list, list-group-item - make it inn a style, list-group-item-light - color, after it, name-->
+                  </ul>
+                </p>
+              </div>
         </div>
-        <div class="col-md-4">
-            <!-- the rigth section (becouse we did it in rows, medium size 4)-->
-          <div class="content-section">
-              <!-- name of the class - edit in css -->
-            <h3>Our Sidebar</h3>
-              <!-- name of the side -->
-            <p class='text-muted'>You can put any information here you'd like.
-              <!-- text-muted - gray style, after it out own text-->
-              <ul class="list-group">
-              <!-- list-group - will be a list group -->
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              <!-- li - list, list-group-item - make it inn a style, list-group-item-light - color, after it, name-->
-              </ul>
-            </p>
-          </div>
-        </div>
+        {%endif%}
+
       </div>
     </main>
 

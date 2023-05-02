@@ -27,8 +27,8 @@ def send_reset_email(user):
     {url_for('users.reset_token', token= token, _external=True)}
     If you didnt make this request simply ignore this Email
     '''
-    print(app.config['MAIL_USERNAME'])
-    print(app.config['MAIL_PASSWORD'])
+    print(current_app.config['MAIL_USERNAME'])
+    print(current_app.config['MAIL_PASSWORD'])
 
     mail.send(msg)
 

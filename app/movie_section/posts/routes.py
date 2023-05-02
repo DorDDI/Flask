@@ -1,5 +1,5 @@
 from flask import render_template, url_for,flash, redirect, request, abort, Blueprint
-from app.posts.forms import PostForm
+from app.movie_section.posts.forms import PostForm
 from app import db
 from app.models import Post
 from flask_login import current_user, login_required
@@ -17,7 +17,7 @@ def new_post():
         db.session.add(post)
         db.session.commit()
         flash('Your Post Created', 'success')
-        return redirect(url_for('main.home'))
+        return redirect(url_for('movie_main.home'))
     return render_template('create_post.html', title='New Post', form=form, legend='New Post')
 
 @posts.route("/post/<int:post_id>")
@@ -52,4 +52,4 @@ def delete_post(post_id):
     db.session.delete(post)
     db.session.commit()
     flash('Your Post Deleted', 'success')
-    return redirect(url_for('main.home'))
+    return redirect(url_for('movie_main.home'))

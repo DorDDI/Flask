@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request, Blueprint
+from flask import render_template, url_for, flash, redirect, request, Blueprint, current_app
 from app.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
 from app import bcrypt, db
 from app.models import Post, User
@@ -11,7 +11,7 @@ users = Blueprint('users', __name__)
 @users.route("/register", methods=['Get', 'Post'])
 def register():
     if current_user.is_authenticated:
-        return redirect((url_for('main.home')))
+        return redirect((url_for('movie_main.home')))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -20,32 +20,32 @@ def register():
         db.session.commit()
         flash('Your account created', 'success')
         return redirect(url_for('users.login'))
-    return render_template('register.html', title='Register', form=form)
+    return render_template('register.html', title='Register', form=form, section=current_app.config['SECTION'])
 
 
 @users.route("/login", methods=['Get', 'Post'])
 def login():
     if current_user.is_authenticated:
-        return redirect((url_for('main.home')))
+        return redirect((url_for('menu.home')))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('main.home'))
+            return redirect(next_page) if next_page else redirect(url_for('movie_main.home'))
         else:
             flash('Login Unsuccessful. Please Try Again', 'danger')
-    return render_template('login.html', title='Login', form=form)
+    return render_template('login.html', title='Login', form=form, section=current_app.config['SECTION'])
 
 
 @users.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for('main.home'))
+    return redirect(url_for('movie_main.home'))
 
 
-@users.route("/account", methods=['Get', 'Post'])
+@users.route("/account/<int:section>", methods=['Get', 'Post'])
 @login_required
 def account():
     form = UpdateAccountForm()
@@ -71,13 +71,13 @@ def user_posts(username):
     user = User.query.filter_by(username=username).first_or_404()
     posts = Post.query.filter_by(author=user).order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
-    return render_template('user_posts.html', posts=posts, user=user, title='User Posts')
+    return render_template('movie_user_posts.html', posts=posts, user=user, title='User Posts')
 
 
 @users.route("/reset_password", methods=['Get', 'Post'])
 def reset_request():
     if current_user.is_authenticated:
-        return redirect((url_for('main.home')))
+        return redirect((url_for('movie_main.home')))
     form = RequestResetForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -89,7 +89,7 @@ def reset_request():
 @users.route("/reset_password/<token>", methods=['Get', 'Post'])
 def reset_token(token):
     if current_user.is_authenticated:
-        return redirect((url_for('main.home')))
+        return redirect((url_for('movie_main.home')))
     user = User.verify_reset_token(token)
     if user is None:
         flash('That is invalid or expired token', 'warning')

@@ -6,7 +6,6 @@ class Config:
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = '587'
     MAIL_USE_TLS = True
-    # MAIL_USERNAME = os.environ.get('EMAIL_USER')
-    # MAIL_PASSWORD = os.environ.get('EMAIL_PASS')
-    MAIL_USERNAME = 'flasktest112233@gmail.com'
-    MAIL_PASSWORD = 'mgsiecscdfmmtaot'
+    MAIL_USERNAME = os.environ.get('EMAIL_USER')
+    MAIL_PASSWORD = os.environ.get('EMAIL_PASS')
+    SECTION = 0

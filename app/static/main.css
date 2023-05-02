@@ -1,5 +1,5 @@
 body {
-  background: #eeeeee;
+  background: #f0f0e8;
   color: #333333;
   margin-top: 5rem;
 }
@@ -8,13 +8,13 @@ h1, h2, h3, h4, h5, h6 {
   color: #444444;
 }
 
-.bg-steel {
-  background-color: #6495ED;
+.bg-steel-movie {
+      background-color: #ffd117;
 }
 
 
 .site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+  color: #000000;
 }
 
 .site-header .navbar-nav .nav-link:hover {
@@ -93,4 +93,23 @@ a.article-title:hover {
 }
 .form-group {
     margin-bottom: 16px;
+}
+
+.navbar-brand{
+    color: #444444;
+}
+
+.navbar-brand-main{
+    color: #000000;
+}
+
+.site-header-main .navbar-nav-main .nav-link-main:hover {
+  color: #000000;
+}
+
+.bg-steel-main {
+      background-color: #9cbdbd;
+}
+.bg-steel-music {
+      background-color: #009e30;
 }
