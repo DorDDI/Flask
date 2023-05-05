@@ -6,7 +6,7 @@ menu = Blueprint('menu', __name__)
 
 
 @menu.route("/")
-def manu_disp():
+def menu_disp():
     current_app.config['SECTION'] = 0
     return render_template('menu.html', title='Menu', section=current_app.config['SECTION'])
 

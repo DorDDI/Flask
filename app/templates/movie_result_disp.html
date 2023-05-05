@@ -1,0 +1,30 @@
+{% extends "layout.html"%}
+{%block content1%}
+            <h1>Search Results<h1>
+                <div class="media movie-section">
+                     <img class="rounded-circle movie-img" src="{{ poster }}">
+                     <div class="movie-body ">
+                      {{ info['Name'] }}
+                     </div>
+                    <div class="container movie-size">
+                        {% if search_type=='Movie' %}
+                            <div class="movie-font-title">Type: <a>{{search_type}}</a></div>
+                            <div class="movie-font-title"> Duration:<a> {{info['Duration']}}</a></div>
+                            <div class="movie-font-title">Actors: <a>{{info['Actors']}}</a></div>
+                            <div class="movie-font-title"> Year: <a>{{info['Year']}}</a></div>
+                            <div class="movie-font-title"> Rate: <a>{{info['Rate']}}</a></div>
+                            <div class="movie-font-title"> Genre: <a> {{info['Genre']}}</a></div>
+                            <div class="movie-font-title"> Content Rate: <a> {{info['Content Rate']}}</a></div>
+                            <div class="movie-font-title"> Description: <a>{{info['Description']}}</a></div>
+                        {% else %}
+                            <div class="movie-font-title">Type: <a>{{search_type}}</a></div>
+                            <div class="movie-font-title">Actors: <a>{{info['Actors']}}</a></div>
+                            <div class="movie-font-title"> Year: <a>{{info['Year']}}</a></div>
+                            <div class="movie-font-title"> Rate: <a>{{info['Rate']}}</a></div>
+                            <div class="movie-font-title"> Genre: <a> {{info['Genre']}}</a></div>
+                            <div class="movie-font-title"> Content Rate: <a> {{info['Content Rate']}}</a></div>
+                            <div class="movie-font-title"> Description: <a>{{info['Description']}}</a></div>
+                        {% endif %}
+                    </div>
+                </div>
+{%endblock content1%}

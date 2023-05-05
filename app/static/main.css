@@ -54,6 +54,13 @@ a.article-title:hover {
   float: left;
 }
 
+.movie-img {
+  height: 70px;
+  width: 70px;
+  margin-right: 16px;
+  float: left;
+}
+
 .article-metadata {
   text-decoration:none;
   padding-bottom: 1px;
@@ -91,6 +98,35 @@ a.article-title:hover {
    margin-bottom: 65px;
 
 }
+
+.movie-body{
+   margin-bottom: 30px;
+
+}
+
+
+
+.movie-size{
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.movie-section {
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 1px;
+  margin-bottom: 10px;
+}
+
+.movie-section-up {
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 1px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+
 .form-group {
     margin-bottom: 16px;
 }
@@ -112,4 +148,56 @@ a.article-title:hover {
 }
 .bg-steel-music {
       background-color: #009e30;
+}
+
+.movie-font-title
+{
+    font-weight: bold;
+    font-size:20px;
+}
+.movie-font-title a
+{
+    font-size:16px;
+    font-weight: normal;
+
+}
+
+.side-body{
+   margin-bottom: 7px;
+
+}
+
+.side-size{
+    font-size: 16px;
+    margin-top: 7px;
+}
+.movie-body-upcoming{
+   margin-bottom: 50px;
+
+}
+
+.movie-font-upcoming
+{
+    font-weight: bold;
+    font-size:25px;
+
+}
+
+.movie-font-title-up
+{
+    font-weight: bold;
+    font-size:18px;
+}
+.movie-font-title-up a
+{
+    font-size:14px;
+    font-weight: normal;
+
+}
+
+.movie-font-date
+{
+    font-weight: bold;
+    font-size:25px;
+    margin-bottom: 30px;
 }

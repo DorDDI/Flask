@@ -1,4 +1,13 @@
 {% extends "layout.html"%}
 {%block content1%}
-    <h1>about page<h1>
+        {% if section == 0%}
+            <h1>main about page<h1>
+        {% else%}
+                {% if section == 1%}
+                   <h1>movie about page<h1>
+                {% else%}
+                        <h1>music about page<h1>
+                {% endif %}
+        {% endif %}
+
 {%endblock content1%}

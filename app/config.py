@@ -1,4 +1,6 @@
 import os
+from movies import Movie
+
 
 class Config:
     SECRET_KEY = 'e05201e52103ae9e0b478dc038802df6'
@@ -9,3 +11,5 @@ class Config:
     MAIL_USERNAME = os.environ.get('EMAIL_USER')
     MAIL_PASSWORD = os.environ.get('EMAIL_PASS')
     SECTION = 0
+    RES = ''
+    MOVIE = Movie()

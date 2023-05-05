@@ -1,0 +1,16 @@
+{% extends "layout.html"%}
+{%block content1%}
+            <h1>Search results page<h1>
+
+                {%for movie in movies%}
+                    <a class='article-title' href="{{ url_for('movie_main.choose', number=movie['index']) }}">
+                        <div class="media movie-section">
+                             <img class="rounded-circle movie-img" src="{{ movie['poster'] }}">
+                             <div class="movie-body movie-size">
+                                 {{ movie['name'] }}
+                            </div>
+                         </div>
+                    </a>
+                {% endfor %}
+
+{%endblock content1%}

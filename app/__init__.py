@@ -15,7 +15,6 @@ login_manager.login_message_category = 'info'
 mail = Mail()
 
 
-
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
@@ -27,16 +26,18 @@ def create_app(config_class=Config):
 
     from app.users.routes import users
     from app.movie_section.main.routes import movie_main
-    from app.movie_section.posts.routes import posts
+    from app.movie_section.posts.routes import movie_posts
     from app.menu.routes import menu
     from app.errors.handlers import errors
     from app.music_section.main.routes import music_main
+    from app.music_section.posts.routes import music_posts
 
     app.register_blueprint(users)
     app.register_blueprint(movie_main)
-    app.register_blueprint(posts)
+    app.register_blueprint(movie_posts)
     app.register_blueprint(menu)
     app.register_blueprint(errors)
     app.register_blueprint(music_main)
+    app.register_blueprint(music_posts)
 
     return app

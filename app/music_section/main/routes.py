@@ -1,5 +1,5 @@
 from flask import render_template, request, Blueprint,current_app
-from app.models import Post
+from app.models import MusicPost
 
 music_main = Blueprint('music_main', __name__)
 
@@ -7,7 +7,7 @@ music_main = Blueprint('music_main', __name__)
 def home():
     page = request.args.get('page', 1, type=int)
     current_app.config['SECTION'] = 2
-    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+    posts = MusicPost.query.order_by(MusicPost.date_posted.desc()).paginate(page=page, per_page=5)
     return render_template('music_home.html', posts=posts, title='Home', section=current_app.config['SECTION'])
 
 

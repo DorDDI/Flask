@@ -1,0 +1,27 @@
+
+
+{% extends "layout.html"%}
+{%block content1%}
+            <h1>Upcoming Results Page<h1>
+            {%for date in dates%}
+                <div class="media movie-section movie-font-date">
+                    {{ date }}
+
+                {%for movie in movies[date]%}
+
+                        <div class="media movie-section-up">
+                            <a class='article-title' href="{{ url_for('movie_main.choose', number=movie['id'])}}">
+                                 <img class="rounded-circle movie-img" src="{{ movie['poster'] }}">
+                                 <div class="movie-font-upcoming">
+                                     {{ movie['Name'] }}
+                                 </div>
+                            </a>
+                            <div class="movie-font-title-up"> Genre:  <a> {{ movie['genre'] }}</a></div>
+                            <div class="movie-font-title-up"> Actors: <a>{{ movie['actors'] }}</a></div>
+                         </div>
+
+                {% endfor %}
+                </div>
+            {% endfor %}
+
+{%endblock content1%}
