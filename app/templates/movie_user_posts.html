@@ -1,6 +1,7 @@
 {% extends "layout.html"%}
 {%block content1%}
     <h1 class="mb-3">Post by {{user.username}} ({{posts.total}})</h1>
+     <a class="watchlist-title" href="{{ url_for('users.user_watchlist', username=user.username, section=section) }}">{{ user.username }} Watchlist</a>
     {%for post in posts.items%}
     <article class="media content-section">
         <img class="rounded-circle article-img" src="{{ url_for('static',filename='profile_pics/' + post.author.image_file )}}">

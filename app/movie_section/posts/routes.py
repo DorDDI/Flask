@@ -25,9 +25,9 @@ def post(post_id, section):
     post = Post.query.get_or_404(post_id)
     return render_template('post.html', title=post.title, post=post, section=current_app.config['SECTION'])
 
-@movie_posts.route("/movie_post/<int:post_id>/update<int:section>", methods=['Get', 'Post'])
+@movie_posts.route("/movie_post/<int:post_id>/update/<int:section>", methods=['Get', 'Post'])
 @login_required
-def update_post(post_id,section):
+def update_post(post_id, section):
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)

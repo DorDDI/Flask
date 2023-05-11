@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint, current_app
 from app.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
 from app import bcrypt, db
-from app.models import Post, User, MusicPost
+from app.models import Post, User, MusicPost,MovieWatchlist
 from flask_login import login_user, current_user, logout_user, login_required
 from app.users.utils import save_picture, send_reset_email
 
@@ -57,7 +57,7 @@ def account(section):
         current_user.email = form.email.data
         db.session.commit()
         flash('Your Account Has Updated', 'success')
-        return redirect(url_for('users.account'))
+        return redirect(url_for('users.account', section=current_app.config['SECTION']))
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
@@ -77,6 +77,20 @@ def user_posts(username,section):
         posts = MusicPost.query.filter_by(author=user).order_by(MusicPost.date_posted.desc())\
             .paginate(page=page, per_page=5)
         return render_template('music_user_posts.html', posts=posts, user=user, title='User Posts', section=current_app.config['SECTION'])
+
+
+@users.route("/user_watchlist/<string:username>/<int:section>")
+def user_watchlist(username, section):
+    page = request.args.get('page', 1, type=int)
+    user = User.query.filter_by(username=username).first_or_404()
+    if(section ==1):
+        watch = MovieWatchlist.query.filter_by(author=user).order_by(MovieWatchlist.date_posted.desc())\
+            .paginate(page=page, per_page=5)
+        return render_template('movie_user_watchlist.html', watchs=watch, user=user, title='User Movie Watchlist',
+                               section=current_app.config['SECTION'])
+    else:
+        pass
+        #return render_template('music_user_posts.html', watch=watch, user=user, title='User Posts', section=current_app.config['SECTION'])
 
 
 @users.route("/user/<string:username>")

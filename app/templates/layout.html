@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <header class="site-header">
+        <header class="site-header">
         <!-- just name of the site -->
         {% if section == 0%}
         <nav class="navbar navbar-expand-md navbar-dark bg-steel-main fixed-top">
@@ -115,22 +115,22 @@
                                   <ul class="list-group">
                                   <!-- list-group - will be a list group -->
 
-                                <a class='article-title' href="#">
+                                <a class='article-title' href="{{url_for('users.user_watchlist', username=current_user.username, section=section)}}">
                                              <div class="side-body movie-size">
                                                  My Watchlist
                                             </div>
                                 </a>
-                                <a class='article-title' href="{{url_for('movie_main.search', section=section)}}">
+                                <a class='article-title' href="{{url_for('movie_main.search',username=current_user.username, section=section)}}">
                                              <div class="side-body side-size">
                                                  Search
                                             </div>
                                 </a>
-                                <a class='article-title' href="#">
+                                <a class='article-title' href="{{url_for('movie_main.popular',pop_type=1, section=section)}}">
                                              <div class="side-body side-size">
                                                  Popular Movie
                                             </div>
                                 </a>
-                                <a class='article-title' href="#">
+                                <a class='article-title' href="{{url_for('movie_main.popular',pop_type=0, section=section)}}">
                                              <div class="side-body side-size">
                                                  Popular TV Seria
                                             </div>

@@ -25,12 +25,25 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
 }
 
+.watchlist-icon .navbar-nav .nav-link {
+  color: #000000;
+}
+
+.watchlist-icon .navbar-nav .nav-link:hover {
+  color: #0099ff;
+}
+
+.watchlist-icon .navbar-nav  .nav-link.active {
+  font-weight: 100;
+}
+
 .content-section {
   background: #ffffff;
   padding: 10px 20px;
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
+  margin-top: 5px;
 }
 
 .article-title {
@@ -116,6 +129,7 @@ a.article-title:hover {
   border: 1px solid #dddddd;
   border-radius: 1px;
   margin-bottom: 10px;
+
 }
 
 .movie-section-up {
@@ -200,4 +214,58 @@ a.article-title:hover {
     font-weight: bold;
     font-size:25px;
     margin-bottom: 30px;
+}
+
+.movie-watchlist-title
+{
+    font-weight: bold;
+    font-size:45px;
+    margin-bottom: 30px;
+}
+
+.right {
+
+height: 90px;
+width: 90px;
+position: fixed;
+margin-top: -25px;
+margin-left: 770px;
+}
+
+.watch-title {
+  color: #444444;
+  text-decoration:none;
+  font-size:40px;
+  font-weight: bold;
+
+}
+
+.movie-metadata {
+  text-decoration:none;
+  padding-bottom: 1px;
+
+  border-bottom: 1px solid #e3e3e3
+
+}
+
+.movie-body{
+
+   margin-bottom: 30px;
+
+}
+
+.watchlist-title {
+
+  color: #444444;
+  text-decoration:none;
+  font-size:20px;
+
+
+
+}
+
+a.watchlist-title:hover {
+  color: #428bca;
+  text-decoration:none;
+
 }
