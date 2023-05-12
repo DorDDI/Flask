@@ -33,17 +33,17 @@ If the user is the owner of the watchlist, he can update his watch status and ra
 
 The watchlist option can help users see the other users watchlist to get recommendation based on their opinion.
 
-### My Search:
+### Search:
 The search option provide a search option of a movie to TV seria in a text input.
 After the user press the search button, the five closest option will be show. Each option will show the option name, year and actors.
 When an option was selected it will show more info of the item with a add to watchlist button.
 
-### My Popular Movie/TV Seria:
+### Popular Movie/TV Seria:
 In this option we will get the most popular movie/TV seria.
 In the main page of the popular movie/TV seria we can select how much items to show, the genre of the items and from which index (if selected 10 items to show and index 5 it will show the most popular from the fifth to the fifteenth most popular items)
 After the search it will show all the items that found. When click on one of the options it will display the search page of the movie like the search option.
 
-### My Upcoming Movies:
+### Upcoming Movies:
 In this option we will get upcoming movie.
 We can select the number of upcoming movies to show. After select the number of the movies to show, it will display the movies divided by date of release.
 When click on one of the options it will display the search page of the movie like the search option.
