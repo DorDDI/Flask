@@ -6,7 +6,6 @@ from flask_mail import Mail
 from app.config import Config
 
 
-
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()

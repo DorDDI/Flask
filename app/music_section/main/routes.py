@@ -1,7 +1,8 @@
-from flask import render_template, request, Blueprint,current_app
+from flask import render_template, request, Blueprint, current_app
 from app.models import MusicPost
 
 music_main = Blueprint('music_main', __name__)
+
 
 @music_main.route("/music_home")
 def home():
@@ -15,4 +16,3 @@ def home():
 def about():
     current_app.config['SECTION'] = 2
     return render_template('about.html', title='About', section=current_app.config['SECTION'])
-

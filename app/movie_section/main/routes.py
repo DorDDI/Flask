@@ -1,10 +1,11 @@
 from flask import render_template, request, Blueprint,current_app, flash, redirect, url_for,abort
-from app.models import Post, MovieWatchlist, User
+from app.models import Post, MovieWatchlist
 from app import db
 from flask_login import login_required, current_user
 from app.movie_section.movies_forms import SearchForm, UpcomingForm, PopularForm, WatchlistForm
 
 movie_main = Blueprint('movie_main', __name__)
+
 
 @movie_main.route("/movie_home")
 def home():
@@ -33,7 +34,7 @@ def search():
             return redirect(url_for('movie_main.search'))
         return render_template('movie_search_results.html', title='Movie Search Results',
                                movies=res['results'], form=form, section=current_app.config['SECTION'])
-    return render_template('movie_search.html', title='Movie Search',legend='Name of movie or TV seria', form=form,
+    return render_template('movie_search.html', title='Movie Search', legend='Name of movie or TV seria', form=form,
                            section=current_app.config['SECTION'])
 
 
@@ -79,20 +80,20 @@ def upcoming():
     return render_template('movie_upcoming.html', title='Movie Search', legend='Choose number of movies to show',
                            form=form, section=current_app.config['SECTION'])
 
+
 @movie_main.route("/movie_popular/<int:pop_type>/<int:section>", methods=['Get', 'Post'])
 @login_required
-def popular(pop_type,section):
+def popular(pop_type, section):
     form = PopularForm()
-    if pop_type ==1 :
+    if pop_type == 1:
         str_type = 'Movie'
     else:
         str_type = 'TV Seria'
     if form.validate_on_submit():
         current_app.config['RES'] = current_app.config['MOVIE'].get_popular(pop_type, genre=form.choices.data,
                                                                             start_id=form.start.data,
-                                                                            movie_number= form.number_of_movies.data)
+                                                                            movie_number=form.number_of_movies.data)
         res = current_app.config['RES']
-
         return render_template('movie_popular_results.html', title='Movie Upcoming Results',
                                movies=res['results'], form=form, section=current_app.config['SECTION'])
     return render_template('movie_popular.html', title='Movie Search', legend=f'Popular {str_type}',
@@ -124,8 +125,8 @@ def new_watchlist():
             db.session.commit()
             flash('Your Watchlist Added', 'success')
             return redirect(url_for('movie_main.home'))
-        return render_template('movie_watchlist.html', title='New Watchlist', info=info, form=form, legend='New Watchlist',
-                               section=current_app.config['SECTION'])
+        return render_template('movie_watchlist.html', title='New Watchlist', info=info, form=form,
+                               legend='New Watchlist', section=current_app.config['SECTION'])
 
 
 @movie_main.route("/movie_watchlist/<string:watchlist_id>/update/<int:section>", methods=['Get', 'Post'])
@@ -133,7 +134,7 @@ def new_watchlist():
 def update_watchlist(watchlist_id, section):
     watch = MovieWatchlist.query.get_or_404(watchlist_id)
     info = {'ID': watch.id, 'Name': watch.title, 'Poster': watch.poster, 'Duration': watch.duration,
-            'Actors': watch.actors, 'Year':watch.date_year, 'Content Rate': watch.content_rate, 'Genre': watch.genre}
+            'Actors': watch.actors, 'Year': watch.date_year, 'Content Rate': watch.content_rate, 'Genre': watch.genre}
     if watch.author != current_user:
         abort(403)
     form = WatchlistForm()
@@ -142,9 +143,23 @@ def update_watchlist(watchlist_id, section):
         watch.rate = form.rate.data
         db.session.commit()
         flash('Your Watchlist Updated', 'success')
-        return redirect(url_for('users.user_watchlist', username=current_user.username, section=current_app.config['SECTION']))
+        return redirect(url_for('users.user_watchlist', username=current_user.username,
+                                section=current_app.config['SECTION']))
     elif request.method == 'GET':
         form.rate.data = watch.rate
         form.watch_type.data = watch.type_watch
     return render_template('movie_watchlist.html',  title='Update Post', info=info, form=form, legend='Update Post',
                            section=current_app.config['SECTION'])
+
+
+@movie_main.route("/movie_watchlist/<string:watchlist_id>/delete/<int:section>", methods=['Post'])
+@login_required
+def delete_post(watchlist_id, section):
+    watch = MovieWatchlist.query.get_or_404(watchlist_id)
+    if watch.author != current_user:
+        abort(403)
+    db.session.delete(watch)
+    db.session.commit()
+    flash('Your Watchlist Deleted', 'success')
+    return redirect(url_for('users.user_watchlist', username=current_user.username,
+                            section=current_app.config['SECTION']))

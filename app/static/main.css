@@ -227,9 +227,7 @@ a.article-title:hover {
 
 height: 90px;
 width: 90px;
-position: fixed;
-margin-top: -25px;
-margin-left: 770px;
+font-size:15px;
 }
 
 .watch-title {
@@ -268,4 +266,3 @@ a.watchlist-title:hover {
   color: #428bca;
   text-decoration:none;
 
-}

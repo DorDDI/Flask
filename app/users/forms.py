@@ -1,13 +1,9 @@
-
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from app.models import User
-
-#need to do pip install email_validator
-
 
 
 class RegistrationForm(FlaskForm):
@@ -60,7 +56,6 @@ class UpdateAccountForm(FlaskForm):
                 raise ValidationError('That email already taken')
 
 
-
 class RequestResetForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Request Password Reset')
@@ -69,6 +64,7 @@ class RequestResetForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is None:
             raise ValidationError('There Is No Account In This Email')
+
 
 class ResetPasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
