@@ -26,6 +26,8 @@ If the user is the author of the post, the user can update and delete the post.
 
 On the side there is the Movie Sidebar that contain the following options:
 
+
+
 ### My Watchlist:
 In this options we can see the user watchlist that was added.
 Every item contain the name of the movie/TV seria, the time added to the watchlist and info: year, actors, watching status of the user and the rate of the user.
@@ -47,6 +49,8 @@ After the search it will show all the items that found. When click on one of the
 In this option we will get upcoming movie.
 We can select the number of upcoming movies to show. After select the number of the movies to show, it will display the movies divided by date of release.
 When click on one of the options it will display the search page of the movie like the search option.
+
+
 
 ## Music blog section
 
